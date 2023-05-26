@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <application
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@drawable/logo"
+        android:label="Find my Ride"
+        android:requestLegacyExternalStorage="true"
+        android:roundIcon="@drawable/logo"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.AndroidTraffic"
+        android:usesCleartextTraffic="true"
+        tools:targetApi="31">
+
+        <activity
+            android:name=".Feedback"
+            android:exported="false" />
+        <activity
+            android:name=".CustomViewComplaintReply"
+            android:exported="false" />
+        <activity
+            android:name=".ViewComplaintReply"
+            android:exported="false" />
+        <activity
+            android:name=".RegisterComplaint"
+            android:exported="false" />
+        <activity
+            android:name=".CustomSearchBus"
+            android:exported="false" />
+        <activity
+            android:name=".SearchBus"
+            android:exported="false" />
+        <activity
+            android:name=".PassengerHome"
+            android:exported="false"
+            android:label="@string/title_activity_passenger_home"
+            android:theme="@style/Theme.AndroidTraffic.NoActionBar" />
+        <activity
+            android:name=".CustomViewStops"
+            android:exported="false" />
+        <activity
+            android:name=".ViewStops"
+            android:exported="false" />
+        <activity
+            android:name=".DriverHome"
+            android:exported="false" />
+        <activity
+            android:name=".CustomTrafficBlock"
+            android:exported="false" />
+        <activity
+            android:name=".TrafficBlock"
+            android:exported="false" />
+        <activity
+            android:name=".PassengerRegistration"
+            android:exported="false" />
+
+        <uses-library android:name="org.apache.http.legacy" />
+
+        <service
+            android:name=".Locationservice"
+            android:enabled="true"
+            android:exported="true" />
+
+        <activity
+            android:name=".IpPage"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".Login"
+            android:exported="true" />
+
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
+    </application>
+
+</manifest>
