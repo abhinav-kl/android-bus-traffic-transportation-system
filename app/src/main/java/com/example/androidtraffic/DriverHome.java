@@ -5,8 +5,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -20,7 +18,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONObject;
@@ -32,9 +30,9 @@ public class DriverHome extends AppCompatActivity {
 
     TextView driver_name, driver_email, driver_phone;
     ImageView imageView;
-    Button btn;
+//    Button btn;
     SharedPreferences sh;
-    FloatingActionButton fab;
+//    FloatingActionButton fab;
     String url = "";
 
     @SuppressLint("MissingInflatedId")
@@ -42,16 +40,37 @@ public class DriverHome extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_driver_home);
-
+        
         sh = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         driver_name = findViewById(R.id.textView3);
         driver_phone = findViewById(R.id.textView10);
         driver_email = findViewById(R.id.textView11);
         imageView = findViewById(R.id.imageView3);
-        btn = findViewById(R.id.button5);
-        fab = findViewById(R.id.floatingActionButton);
+//        btn = findViewById(R.id.button5);
+//        fab = findViewById(R.id.floatingActionButton);
 
         url = sh.getString("url", "") + "driver_card";
+
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigationBar);
+        bottomNavigationView.setSelectedItemId(R.id.bottomHome);
+        bottomNavigationView.setOnItemSelectedListener(item -> {
+            int itemId = item.getItemId();
+            if (itemId == R.id.bottomHome) {
+                return true;
+            } else if (itemId == R.id.trafficBlock) {
+                startActivity(new Intent(getApplicationContext(), TrafficBlock.class));
+                return true;
+            } else if (itemId == R.id.logout) {
+                Intent location = new Intent(getApplicationContext(), Locationservice.class);
+                stopService(location);
+                Intent ij = new Intent(getApplicationContext(), IpPage.class);
+                ij.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                ij.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(ij);
+            }
+            return false;
+        });
+
         RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
 
@@ -116,25 +135,25 @@ public class DriverHome extends AppCompatActivity {
                 DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         requestQueue.add(postRequest);
 
-        btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent ij = new Intent(getApplicationContext(), TrafficBlock.class);
-                startActivity(ij);
-            }
-        });
-
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent location = new Intent(getApplicationContext(), Locationservice.class);
-                stopService(location);
-                Intent ij = new Intent(getApplicationContext(), IpPage.class);
-                ij.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                ij.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(ij);
-            }
-        });
+//        btn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent ij = new Intent(getApplicationContext(), TrafficBlock.class);
+//                startActivity(ij);
+//            }
+//        });
+//
+//        fab.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent location = new Intent(getApplicationContext(), Locationservice.class);
+//                stopService(location);
+//                Intent ij = new Intent(getApplicationContext(), IpPage.class);
+//                ij.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+//                ij.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+//                startActivity(ij);
+//            }
+//        });
 
     }
 }

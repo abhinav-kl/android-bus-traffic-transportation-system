@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/bottomHome"
+        android:icon="@drawable/ic_home_black_24dp"
+        android:title="Home"/>
+    <item
+        android:id="@+id/trafficBlock"
+        android:icon="@drawable/baseline_bus_alert_24"
+        android:title="Traffic Block"/>
+    <item
+        android:id="@+id/logout"
+        android:icon="@drawable/baseline_logout_24"
+        android:title="Log Out"/>
+</menu>
