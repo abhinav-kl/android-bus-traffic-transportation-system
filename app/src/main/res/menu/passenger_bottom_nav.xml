@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/passHome"
+        android:icon="@drawable/ic_home_black_24dp"
+        android:title="Home"/>
+    <item
+        android:id="@+id/passComplaint"
+        android:icon="@drawable/baseline_message_24"
+        android:title="Complaints"/>
+    <item
+        android:id="@+id/passLogout"
+        android:icon="@drawable/baseline_logout_24"
+        android:title="Log out"/>
+
+
+</menu>

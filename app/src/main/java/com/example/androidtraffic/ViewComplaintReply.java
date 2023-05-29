@@ -1,6 +1,7 @@
 package com.example.androidtraffic;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -16,6 +17,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -41,6 +43,25 @@ public class ViewComplaintReply extends AppCompatActivity {
         list = findViewById(R.id.replylist);
         sh = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         url = sh.getString("url", "") + "view_reply";
+
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigationView);
+        bottomNavigationView.setSelectedItemId(R.id.passComplaint);
+        bottomNavigationView.setOnItemSelectedListener(item -> {
+            int itemId = item.getItemId();
+            if (itemId == R.id.passHome) {
+                startActivity(new Intent(getApplicationContext(), SearchBus.class));
+                return true;
+            } else if (itemId == R.id.passComplaint) {
+                return true;
+            } else if (itemId == R.id.passLogout) {
+                Intent ij = new Intent(getApplicationContext(), IpPage.class);
+                ij.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                ij.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(ij);
+            }
+            return false;
+        });
+
         RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {

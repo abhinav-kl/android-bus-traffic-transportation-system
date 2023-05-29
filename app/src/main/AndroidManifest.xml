@@ -41,11 +41,6 @@
             android:name=".SearchBus"
             android:exported="false" />
         <activity
-            android:name=".PassengerHome"
-            android:exported="false"
-            android:label="@string/title_activity_passenger_home"
-            android:theme="@style/Theme.AndroidTraffic.NoActionBar" />
-        <activity
             android:name=".CustomViewStops"
             android:exported="false" />
         <activity

@@ -1,8 +1,11 @@
 package com.example.androidtraffic;
 
+import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.view.View;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -15,6 +18,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -28,14 +32,26 @@ public class ViewStops extends AppCompatActivity {
     SharedPreferences sh;
     String[] s_id, l_latitude, l_longitude, s_stops, s_route_start, s_route_end, s_arr_time, s_dep_time;
     String url = "";
+    FloatingActionButton fab;
 
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_stops);
         list = (ListView) findViewById(R.id.viewstops);
+        fab = findViewById(R.id.floatingActionButton2);
         sh = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         url = sh.getString("url", "") + "view_bus_stops";
+
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent ij = new Intent(getApplicationContext(), SearchBus.class);
+                ij.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(ij);
+            }
+        });
 
         RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,

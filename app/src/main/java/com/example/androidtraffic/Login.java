@@ -71,15 +71,6 @@ public class Login extends AppCompatActivity {
 //                                        Toast.makeText(MainActivity.this, "welcome", Toast.LENGTH_SHORT).show();
                                             String typ = jsonObj.getString("type"); // user type from pycharm
                                             String id = jsonObj.getString("lid"); // login id from pycharm
-                                            String name = jsonObj.getString("name");
-                                            String email = jsonObj.getString("email");
-                                            sh = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-                                            String ip = sh.getString("ip", "");
-                                            SharedPreferences.Editor ed = sh.edit();
-                                            ed.putString("lid", id);
-                                            ed.putString("name", name);
-                                            ed.putString("email", email);
-                                            ed.apply();
 
                                             if (typ.equalsIgnoreCase("Driver")) {
                                                 Toast.makeText(getApplicationContext(), "Driver", Toast.LENGTH_LONG).show();
@@ -89,7 +80,7 @@ public class Login extends AppCompatActivity {
                                                 startActivity(i);
                                             } else if (typ.equalsIgnoreCase("Passenger")) {
                                                 Toast.makeText(getApplicationContext(), "Passenger", Toast.LENGTH_LONG).show();
-                                                Intent i = new Intent(getApplicationContext(), PassengerHome.class);
+                                                Intent i = new Intent(getApplicationContext(), SearchBus.class);
                                                 startActivity(i);
                                             }
                                         } else {

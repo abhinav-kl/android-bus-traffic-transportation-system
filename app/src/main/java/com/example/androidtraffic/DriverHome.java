@@ -30,9 +30,7 @@ public class DriverHome extends AppCompatActivity {
 
     TextView driver_name, driver_email, driver_phone;
     ImageView imageView;
-//    Button btn;
     SharedPreferences sh;
-//    FloatingActionButton fab;
     String url = "";
 
     @SuppressLint("MissingInflatedId")
@@ -46,8 +44,6 @@ public class DriverHome extends AppCompatActivity {
         driver_phone = findViewById(R.id.textView10);
         driver_email = findViewById(R.id.textView11);
         imageView = findViewById(R.id.imageView3);
-//        btn = findViewById(R.id.button5);
-//        fab = findViewById(R.id.floatingActionButton);
 
         url = sh.getString("url", "") + "driver_card";
 
@@ -134,26 +130,6 @@ public class DriverHome extends AppCompatActivity {
                 DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
                 DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         requestQueue.add(postRequest);
-
-//        btn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent ij = new Intent(getApplicationContext(), TrafficBlock.class);
-//                startActivity(ij);
-//            }
-//        });
-//
-//        fab.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent location = new Intent(getApplicationContext(), Locationservice.class);
-//                stopService(location);
-//                Intent ij = new Intent(getApplicationContext(), IpPage.class);
-//                ij.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-//                ij.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-//                startActivity(ij);
-//            }
-//        });
 
     }
 }
